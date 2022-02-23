@@ -51,6 +51,10 @@ main h1 {
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
   line-height: 28px;
+  padding: 25px 50px;
+  border-radius: 10px;
+  border: 1px solid rgba(8, 131, 34, .25);
+  background-color: rgba(8, 131, 34, .10);
 }
 
 span.text {

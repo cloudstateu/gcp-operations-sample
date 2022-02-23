@@ -1,17 +1,27 @@
+if (process.env.NODE_ENV === 'production') {
+  require('@google-cloud/trace-agent').start();
+}
+
 const express = require('express');
-const morgan = require('morgan');
+const bunyan = require('bunyan');
+const { LoggingBunyan } = require('@google-cloud/logging-bunyan');
+
+const loggingBunyan = new LoggingBunyan();
+const logger = bunyan.createLogger({
+  name: 'payments',
+  streams: [ loggingBunyan.stream('info') ]
+});
 
 const app = express();
-app.use(morgan('dev'));
+app.use(express.json());
 
 const router = express.Router();
-const routes = require('./routes')(router, {});
+const routes = require('./routes')(router, logger, {});
 
 app.use(`/${process.env.GAE_SERVICE}`, routes);
 
 app.use((err, _req, res, _next) => {
-  console.log('Handling uncaught error');
-  console.error(err.stack);
+  logger.error(err);
   res.status(500).json({ status: 'fail', error: err.message });
 });
 
