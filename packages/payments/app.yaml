@@ -1,13 +1,2 @@
 service: payments
-
 runtime: nodejs16
-
-instance_class: F1
-
-env_variables:
-  CHM_APP_NAME: "payments"
-
-# - url: /.*
-#   secure: always
-#   redirect_http_response_code: 301
-#   script: auto
