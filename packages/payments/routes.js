@@ -10,7 +10,7 @@ module.exports = (app, logger) => {
 
     logger.info({ order: { id: orderId }, req, message: 'Payment received' });
 
-    await axios.post(`https://training-ora-maciejborowy1.ey.r.appspot.com/orders/${orderId}/status`, {
+    await axios.post(`https://${process.env.GOOGLE_CLOUD_PROJECT}.ey.r.appspot.com/orders/${orderId}/status`, {
       status: 'paid'
     });
 

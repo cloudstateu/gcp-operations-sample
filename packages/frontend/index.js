@@ -22,7 +22,7 @@ async function startServer() {
 
   app.post('/order', async (req, res, next) => {
     try {
-      const response = await axios.post('https://training-ora-maciejborowy1.ey.r.appspot.com/orders/');
+      const response = await axios.post(`https://${process.env.GOOGLE_CLOUD_PROJECT}.ey.r.appspot.com/orders/`);
       const result = response.data;
 
       req.log.info({ data: result, message: 'Received response from /orders' });
@@ -37,7 +37,7 @@ async function startServer() {
     try {
       const orderId = req.body.orderId;
 
-      await axios.post('https://training-ora-maciejborowy1.ey.r.appspot.com/payments/', {
+      await axios.post(`https://${process.env.GOOGLE_CLOUD_PROJECT}.ey.r.appspot.com/payments/`, {
         data: { order: { id: orderId } }
       });
 
