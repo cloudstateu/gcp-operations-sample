@@ -2,6 +2,14 @@
 
 ## Deploy application to App Engine
 
+Create application for the first time using:
+
+```bash
+gcloud app deploy ./packages/dispatch.yaml ./packages/frontend/app.yaml ./packages/orders/app.yaml ./packages/payments/app.yaml
+```
+
+Update application using:
+
 ```bash
 gcloud app deploy ./packages/dispatch.yaml ./packages/frontend/app.yaml ./packages/orders/app.yaml ./packages/payments/app.yaml
 ```

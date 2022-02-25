@@ -3,4 +3,3 @@ dispatch:
     service: orders
   - url: "*/payments/*"
     service: payments
-  - url: ""
