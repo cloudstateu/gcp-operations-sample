@@ -28,6 +28,6 @@ curl -X POST -d '{ "data": { "order": { "id": "<ORDER_ID>" } } }' -H 'Content-ty
 ```
 
 ```bash
-curl -X POST -d '{ "data": { "order": { "id": "d6bd55cd-c494-47bb-bfb6-f00c721ac4c4" } } }' -H 'Content-type: application/json' -H 'X-Cloud-Trace-Context: <TRACE_ID>/1;o=1' https://training-ora-maciejborowy1.ey.r.appspot.com/payments/
+curl -X POST -d '{ "data": { "order": { "id": "77b21629-0b88-4864-b766-70da1f307ea3" } } }'-H 'X-Cloud-Trace-Context: 04485859961f1d4bfa955c88e566ffdb/1;o=1' -H 'Content-type: application/json' https://training-ora-maciejborowy1.ey.r.appspot.com/payments/
 ```
 

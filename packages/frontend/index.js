@@ -13,16 +13,19 @@ async function startServer() {
 
   const app = express();
   app.use(mw);
+  app.use(express.urlencoded());
   app.set('view engine', 'pug');
 
   app.get('/', (_, res) => {
     res.render('index');
   });
 
-  app.post('/', async (req, res, next) => {
+  app.post('/order', async (req, res, next) => {
     try {
       const response = await axios.post('https://training-ora-maciejborowy1.ey.r.appspot.com/orders/');
       const result = response.data;
+
+      req.log.info({ data: result, message: 'Received response from /orders' });
 
       res.render('index', result);
     } catch (err) {
@@ -30,7 +33,21 @@ async function startServer() {
     }
   });
 
-  app.use((err, _req, res, _next) => {
+  app.post('/pay', async (req, res, next) => {
+    try {
+      const orderId = req.body.orderId;
+
+      await axios.post('https://training-ora-maciejborowy1.ey.r.appspot.com/payments/', {
+        data: { order: { id: orderId } }
+      });
+
+      res.render('index', { paid: true });
+    } catch (err) {
+      next(err);
+    }
+  });
+
+  app.use((err, req, res, _next) => {
     req.log.error(err.stack);
     res.status(500).json({ status: 'fail', error: err.message });
   });
