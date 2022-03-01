@@ -8,12 +8,6 @@ Create application for the first time using:
 gcloud app deploy ./packages/dispatch.yaml ./packages/frontend/app.yaml ./packages/orders/app.yaml ./packages/payments/app.yaml
 ```
 
-Update application using:
-
-```bash
-gcloud app deploy ./packages/dispatch.yaml ./packages/frontend/app.yaml ./packages/orders/app.yaml ./packages/payments/app.yaml
-```
-
 ## How to test application
 
 1. Deploy application to App Engine
